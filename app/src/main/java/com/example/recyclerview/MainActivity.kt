@@ -1,11 +1,20 @@
 package com.example.recyclerview
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
+import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_main.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
+//const val base_url1 = "https://jsonplaceholder.typicode.com/"
 class MainActivity : AppCompatActivity(),PhotoAdapter.OnItemClickListener {
 
 
@@ -51,8 +60,15 @@ class MainActivity : AppCompatActivity(),PhotoAdapter.OnItemClickListener {
 
     }
 
+
+
+
     override fun onItemClick(position: Int) {
         Toast.makeText(this, "Item $position clicked", Toast.LENGTH_SHORT).show()
+        val intent = Intent(this,HomeActivity::class.java)
+        intent.putExtra("user_message","Item $position clicked")
+        intent.putExtra("arrayuser",myArray)
 
+        startActivity(intent)
     }
 }
